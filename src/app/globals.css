@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #3b82f6;
+  --color-primary: #f27a1a;
   --color-primary-foreground: #ffffff;
   --color-background: #ffffff;
   --color-foreground: #171717;
@@ -11,7 +11,7 @@
   --color-accent-foreground: #171717;
   --color-border: #e5e5e5;
   --color-input: #e5e5e5;
-  --color-ring: #3b82f6;
+  --color-ring: #f27a1a;
 }
 
 :root {

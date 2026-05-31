@@ -1,75 +1,52 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Truck, ShieldCheck, Clock, CreditCard } from "lucide-react";
+import { ArrowRight, Truck, ShieldCheck, Clock, CreditCard, Flame } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
+import { products } from "@/lib/products";
 
-const featuredProducts = [
-  {
-    id: 1,
-    name: "Classic Leather Watch",
-    price: 199.99,
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
-    category: "Accessories",
-    rating: 4.8,
-  },
-  {
-    id: 2,
-    name: "Minimalist Backpack",
-    price: 89.00,
-    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80",
-    category: "Bags",
-    rating: 4.5,
-  },
-  {
-    id: 3,
-    name: "Noise Cancelling Headphones",
-    price: 299.99,
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
-    category: "Electronics",
-    rating: 4.9,
-  },
-  {
-    id: 4,
-    name: "Smart Fitness Tracker",
-    price: 129.50,
-    image: "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=800&q=80",
-    category: "Gadgets",
-    rating: 4.7,
-  },
-];
+const featuredProducts = products.slice(0, 4);
+const flashDeals = products.slice(4, 8);
 
 export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center bg-gray-900 overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80"
-          alt="Hero Background"
-          fill
-          className="object-cover opacity-60"
-          priority
-        />
-        <div className="container relative z-10 px-4 text-center text-white">
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
-            Elevate Your <span className="text-primary">Lifestyle</span>
-          </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-10 text-gray-200">
-            Discover our curated collection of premium essentials designed to improve your daily routine. Experience quality like never before.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/shop" 
-              className="px-8 py-4 bg-primary text-white rounded-md font-semibold hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
-            >
-              Shop Now <ArrowRight className="h-5 w-5" />
-            </Link>
-            <Link 
-              href="/categories" 
-              className="px-8 py-4 bg-white text-gray-900 rounded-md font-semibold hover:bg-gray-100 transition-colors"
-            >
-              View Categories
-            </Link>
+      <section className="relative h-[500px] flex items-center bg-orange-600 overflow-hidden">
+        <div className="absolute right-0 top-0 w-1/2 h-full hidden lg:block">
+          <Image
+            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80"
+            alt="Hero Background"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-transparent" />
+        </div>
+        <div className="container relative z-10 px-8 text-white">
+          <div className="max-w-xl">
+            <span className="inline-block bg-white text-primary text-xs font-bold px-3 py-1 rounded-full mb-4">
+              NEW SEASON ARRIVALS
+            </span>
+            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
+              Summer <span className="text-orange-200">Collection</span> 2026
+            </h1>
+            <p className="text-lg mb-10 text-orange-50">
+              Discover the latest trends from world-class brands. Quality and style delivered to your doorstep with free shipping.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link 
+                href="/shop" 
+                className="px-10 py-4 bg-white text-primary rounded-lg font-bold hover:bg-orange-50 transition-all flex items-center justify-center gap-2 shadow-lg"
+              >
+                Shop Now <ArrowRight className="h-5 w-5" />
+              </Link>
+              <Link 
+                href="/categories" 
+                className="px-10 py-4 bg-orange-700/50 backdrop-blur-sm text-white border border-orange-400 rounded-lg font-bold hover:bg-orange-700 transition-all"
+              >
+                View Categories
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -117,6 +94,58 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} {...product} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Flash Deals - Trendyol style */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="bg-orange-50 rounded-2xl p-8 border border-orange-100">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+              <div className="flex items-center gap-3">
+                <div className="bg-primary p-2 rounded-lg text-white">
+                  <Flame className="h-6 w-6" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">Flash Deals</h2>
+                  <p className="text-sm text-gray-600">Limited time offers, ending soon!</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 text-primary font-mono font-bold text-xl">
+                  <span className="bg-white px-2 py-1 rounded shadow-sm border">02</span>
+                  <span>:</span>
+                  <span className="bg-white px-2 py-1 rounded shadow-sm border">45</span>
+                  <span>:</span>
+                  <span className="bg-white px-2 py-1 rounded shadow-sm border">12</span>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {flashDeals.map((product) => (
+                <div key={product.id} className="relative">
+                  <ProductCard {...product} />
+                  <div className="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded-full z-10">
+                    -30%
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Brands Section - Trendyol style */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold mb-10 text-center">Popular Brands</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8">
+            {['Apple', 'Samsung', 'Nike', 'Adidas', 'Sony', 'Canon'].map((brand) => (
+              <div key={brand} className="bg-white p-6 rounded-xl border flex items-center justify-center hover:shadow-md hover:border-primary transition-all cursor-pointer group">
+                <span className="text-xl font-bold text-gray-400 group-hover:text-primary transition-colors">{brand}</span>
+              </div>
             ))}
           </div>
         </div>
